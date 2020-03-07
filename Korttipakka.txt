@@ -1,0 +1,71 @@
+package src.blackjack;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+
+public class Korttipakka {
+
+ private ArrayList<Kortti>pakka;
+ private ArrayList<Kortti>apuPakka;
+ private int pakkojenMaara;
+
+ public Korttipakka(int pakkojenMaara) {
+     this.pakka = new ArrayList<Kortti>();
+     this.apuPakka = new ArrayList<Kortti>();
+     this.pakkojenMaara = pakkojenMaara;
+     
+     int apuindeksi = 0;
+   
+     
+     while (pakkojenMaara > apuindeksi){ /*while-looppi ottaa vastaan int-arvon pakkojenMaara, jonka mukaisesti
+                                             tekee halutun maaran pakkoja peliin*/
+     for (int maa = 0; maa <= 3; maa++) {
+         for (int arvo = 2; arvo <= 13; arvo++) {
+             String maa1 = Integer.toString(maa);
+             if (maa == 0) {
+                 maa1 = "hertta";
+             }
+             if (maa == 1) {
+                 maa1 = "risti";
+             }
+             if (maa == 2) {
+                 maa1 = "ruutu";
+             }
+             if (maa == 3) {
+                 maa1 = "pata";
+             }
+             Kortti uusiKortti = new Kortti(arvo, maa1);
+            // System.out.println(uusiKortti); //testi pakan toiminnan kokeilemiseksi
+             pakka.add(uusiKortti);
+         }
+        
+     }
+      apuindeksi++;
+    }
+ }
+
+ public void sekoita() {
+ 
+     Collections.shuffle(pakka);
+     
+    /* for (Kortti kortti : pakka) { //tama on testi, jolla varmistetaan pakan sekoittuvan
+         System.out.println(kortti);
+     }*/
+
+ }
+
+    public Kortti jaaKortti(){ 
+        
+     // System.out.println("metodi: korttipakka jaaKortti"); vain testeja varten
+     // System.out.println(this.pakka.get(0) + " tama on pakan eka tällä hetkella"); tama on vain testausta varten
+      this.apuPakka.add(this.pakka.get(0));
+      System.out.println(this.pakka.get(0)); //kortin tulostus tapahtuu nyt taalla
+      this.pakka.remove(0); 
+       // System.out.println(" nyt on siirretty kortti toisaalle ja tulostuu apupakka:"); tämäkin vain testiä varten
+      
+      return this.apuPakka.get(apuPakka.size() -1); 
+
+    //  pakka.remove(0);
+    }
+}

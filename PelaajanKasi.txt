@@ -1,0 +1,68 @@
+
+package src.blackjack;
+import java.util.ArrayList;
+
+public class PelaajanKasi {
+    
+  private ArrayList<Kortti>kortit;
+  private int assat;
+//kostruktori    
+    public PelaajanKasi(){
+        this.kortit = new ArrayList<>();
+
+        this.assat = 0;   //uusi apumuuttuja assien maaran tarkistukseen
+    }
+
+    public void Blackjack(){
+  //tutkii onko kadessa blackjack joka on 10+11    
+  //Huom! assa on nyt viela 14, ja metodin getArvo kutsu muuttaa arvon vasta taalla arvoksi 11
+  //tama koskee myos kuvakortteja
+            if (kortit.size() == 2) { //tarkistaa onko pelaajalla kadessa vain 2 korttia                 
+                if(kortit.get(0).getArvo() == 10 && kortit.get(1).getArvo() == 14){ //tarkistaa ekan ja tokan kortin arvot               
+                        System.out.println("BlackJack!");
+                }
+                else if (kortit.get(1).getArvo() == 10 && kortit.get(0).getArvo() == 14){
+                    System.out.println("BlackJack!");
+                }
+                   
+            } 
+}
+
+  public Kortti OtaKortti(Kortti kortti){
+//lisää kortit-listaan parametrina saamansa kortin
+        String kasiMaa = kortti.getMaa();
+        int kasiArvo = kortti.getArvo();
+        Kortti kasiKortti = new Kortti(kasiArvo, kasiMaa);
+        this.kortit.add(kasiKortti);
+        return kortti;
+}
+
+ 
+public int SelvitaSumma(){
+  //selvittaa pelaajan kaden summan 
+  int summa = 0;
+
+    for(Kortti kasi : kortit){  //kay lapi kadessa olevat kortit
+    summa = summa + kasi.getArvo();
+      if (kasi.getArvo()== 14){  //jos loytyy assa, vahennetaan 3, jotta saa 11
+          this.assat++;
+          summa = summa - 3;
+      }
+      if (this.assat>0){   //jos assia on enemman kuin 0, vahennetaan 10, jotta arvo on 1
+          int laskuri = this.assat; //taman idea, etta poikkeuksena kadessa voi olla vaikka 5 assaa
+          while (laskuri > 0){
+            if (summa <= 20 && summa>= 11) {
+                int apu = summa -10;
+                System.out.print( + apu);
+            }
+            if (summa > 21){
+                summa = summa-10;
+            }
+            laskuri--;
+          }
+      }
+    }
+   return summa;
+   }
+}
+       

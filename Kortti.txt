@@ -1,0 +1,51 @@
+
+package src.blackjack;
+
+
+public class Kortti {
+
+    int arvo;
+    int uusiArvo; // uusi apumuuttuja, jolla arvoja asetetaan
+    String maa;
+
+    public Kortti(int arvo, String maa) {
+        this.arvo = arvo;
+        this.maa = maa;
+    }
+
+     public int getArvo() {
+      if(arvo == 11 ||arvo==12||arvo==13){
+        uusiArvo=10;
+      }else if(arvo==1){ //muutetaan assan arvoksi 14 jatkokasittelya varten
+                            // tata voi tutkia tarkemmin metodissa SelvitaSumma
+        uusiArvo=14;
+      }else{
+        uusiArvo=arvo;
+      }
+        return uusiArvo;
+    }
+
+    public String getMaa() {
+        return maa;
+    }
+    
+    public Kortti getKortti(){
+        Kortti uusiKortti = new Kortti(arvo, maa);
+        return uusiKortti;
+    }
+
+    public void setArvo(int arvo) {
+        this.arvo = arvo;
+    }
+
+    public void setMaa(String maa) {
+        this.maa = maa;
+    }
+    
+
+    @Override
+    public String toString() {
+        return "Kortti: " + maa + " " + arvo;
+    }
+
+}

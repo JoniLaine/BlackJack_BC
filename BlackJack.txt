@@ -1,0 +1,104 @@
+package src.blackjack;
+
+import java.util.Scanner;
+
+
+
+public class BlackJack {
+
+    public static void main(String[] args) {
+        
+        Scanner lukija = new Scanner(System.in);
+        
+        System.out.println("Montako pakkaa haluat peliin mukaan?");
+        int pakkojenMaara = Integer.valueOf(lukija.nextLine()); //pelaaja valitsee haluamansa maaran pakkoja peliin
+
+       //Kortti kymppi = new Kortti(10,"hertta"); //testi jolla pakotetaan BlackJack pelaajalle***
+       //Kortti assa = new Kortti (1, "pata");//***
+        
+        Korttipakka peliPakka = new Korttipakka(pakkojenMaara);
+
+        PelaajanKasi pelaaja = new PelaajanKasi();   
+        PelaajanKasi vastustaja = new PelaajanKasi();
+       
+        peliPakka.sekoita();
+       // System.out.println(peliPakka.jaaKortti()); 
+       
+        //System.out.println(pelaaja.OtaKortti(kymppi)); //***
+        //System.out.println(pelaaja.OtaKortti(assa));//***
+       
+        pelaaja.OtaKortti(peliPakka.jaaKortti());
+        pelaaja.OtaKortti(peliPakka.jaaKortti());
+
+        
+        System.out.println("summa:");
+        int pelaajanKortit = pelaaja.SelvitaSumma();
+        System.out.println(pelaajanKortit);
+        pelaaja.Blackjack(); //tarkistaa BlackJackin mahdollisuuden
+ 
+        while (true){
+            
+           // System.out.println(pelaajanKortit);  //talla voi tarkistaa ettei summa muuttunut syysta x
+        
+        if(pelaajanKortit >= 21){
+            break;
+        }
+        else { 
+            System.out.println("Haluatko nostaa uuden kortin? k/e");
+                 
+            String syote = lukija.nextLine();
+                if (syote.equals("e")){
+                    break;
+                }
+     
+                if (syote.equals("k")){
+                    pelaaja.OtaKortti(peliPakka.jaaKortti());
+                    System.out.println("summa:");
+                    pelaajanKortit = pelaaja.SelvitaSumma();
+                    System.out.println(pelaajanKortit);
+                }        
+            }
+        }    
+        
+        System.out.println("Tietokonevastustajan vuoro:");
+        
+        vastustaja.OtaKortti(peliPakka.jaaKortti());
+        vastustaja.OtaKortti(peliPakka.jaaKortti());
+        vastustaja.Blackjack();
+        
+        int vastustajanKortit = vastustaja.SelvitaSumma();
+        System.out.println(vastustajanKortit);
+        
+        while (vastustajanKortit < 15){
+            vastustaja.OtaKortti(peliPakka.jaaKortti());
+            vastustajanKortit = vastustaja.SelvitaSumma();
+            System.out.println("summa:");
+            System.out.println(vastustajanKortit);
+        }    
+        
+        if (pelaajanKortit > vastustajanKortit && pelaajanKortit <= 21){
+            System.out.println("Pelaaja voitti");
+        }
+        
+        else if (pelaajanKortit < vastustajanKortit && vastustajanKortit <= 21){
+            System.out.println("Vastustaja voitti");
+        }
+        
+        else if (pelaajanKortit > 21 && vastustajanKortit > 21){
+            System.out.println("Kumpikin hävisi");
+        }
+        
+        else if (pelaajanKortit > 21){
+             System.out.println("Pelaaja hävisi");
+                }
+
+        else if (vastustajanKortit > 21){
+             System.out.println("Vastustaja hävisi");
+                }
+    
+        else if (vastustajanKortit == 21 && pelaajanKortit == 21){
+            System.out.println("Kumpikin voitti jakajan");
+        }
+    }
+}
+  
