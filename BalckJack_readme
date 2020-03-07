@@ -1,1 +1,20 @@
 BlackJack
+
+1.	Toteuta luokka Kortti, jolla on atribuutit arvo (int) ja maa (String). Toteuta luokkaan parametrillinen konstruktori, get- ja set- metodit ja toString-metodi.
+
+2.	Toteuta luokka Korttipakka, jolla on ArrayList<Kortti>-tyyppinen atribuutti pakka. Luokan oletuskonstruktori sijoittaa pakka-atribuuttiin halutun määrän 52 korttisia korttipakkoja numero- ja maajärjestyksessä. Toteuta luokkaan metodi sekoita, joka sekoittaa atribuutin pakka korttien järjestyksen. Toteuta lisäksi metodi jaaKortti, joka palauttaa pakan ensimmäisen kortin ja poistaa sen pakasta.
+
+3.	Toteuta luokka PelaajanKasi, jolla on ArrayList<Kortti>-tyyppinen atribuutti kortit. Toteuta luokkaan metodi otaKortti, joka lisää kortit-listaan parametrina saamansa kortin. Toteuta luokkaan lisäksi metodi selvitäSumma, joka selvittää pelaajan käden summan seuraavin säännöin:
+
+kortin arvo 2-10:	käden summaan lisätään kortin numeroa vastaava arvo(2 lisätään 2, 3 lisätään 3.)kortin arvo 11-13:	käden summaan lisätään 10
+kortin arvo 1 (ässä):	käden summaan lisätään 11
+
+Mikäli korttein yhteissummaksi tuli yli 21, niin vähennetään summasta 10. Tässä tilanteessa on saatu kaksi ässää, jolloin toisen ässän tulkitaan olevan arvoltaan 1.
+
+4.	Blackjackiksi kutsutaan tilannetta, jolla pelaajalla on kaksi korttia, joista toinen on arvoltaan 10-13 ja toinen ässä. Toteuta luokkaan PelaajanKasi, metodi joka tutkii onko kätenä blackjack.
+
+5.	Toteuta edellisten tehtävien luokkia hyödyntäen sovellusluokka Blackjack. Sovelluksessa luodaan aluksi korttipakka ja sekoitetaan se. Tämän jälkeen pelaajalle jaetaan kaksi korttia ja ilmoitetaan korttien summa. Mikäli summa on alle 21, kysytään pelaajalta haluaako hän lisäkortin. Haluttaessa lisäkortti jaetaan ja ilmoitetaan uusi summa. Tätä jatketaan kunnes summa on suurempi tai yhtä suuri kuin 21 tai kunnes pelaaja ei halua lisää kortteja. Lopuksi ilmoitetaan loppusumma.
+
+6.	Lisää edelliseen sovellusluokkaan Blackjack korttien jakaminen tietokoneavustajalle. Vastusta haluaa nostaa lisää kortteja niin kauan kuin summa on alle 15. Lopuksi ilmoitetaan voittaja. Pelin voittaa se, kummalla on suurempi summa, joka on korkeintaan 21. Summan 21 ylittänyt pelaaja häviää aina.
+
+
